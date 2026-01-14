@@ -1,0 +1,25 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+      target: development
+    container_name: fastapi-base
+    environment:
+      PORT: 8000
+    ports:
+      - '8000:8000'
+    restart: always
+    volumes:
+      - ./:/app
+
+  db:
+    image: postgres:18
+    container_name: fastapi-base-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - '2345:2345'
+    restart: always
