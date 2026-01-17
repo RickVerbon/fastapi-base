@@ -1,4 +1,20 @@
+init:
+	docker compose build
+	docker compose up -d
+	sleep 2
+	make init-db
+
+up:
+	docker compose up -d --build
+
 init-db:
 	docker compose exec app python -m app.db.init_db
 
-.PHONY: init-db
+test:
+	docker compose exec app pytest -v
+
+reset-db:
+	docker compose exec app python -m app.db.reset_db
+	make init-db
+
+.PHONY: init-db test up init reset-db
