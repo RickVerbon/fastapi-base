@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from app.repositories.user import UserRepository
-from app.models.user import Base
+from app.db.base import Base
 
 # In-memory SQLite, volledig los van main test.db
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
